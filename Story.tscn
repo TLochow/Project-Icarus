@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Story.gd" type="Script" id=1]
+[ext_resource path="res://Black.png" type="Texture" id=2]
+[ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://Blip.wav" type="AudioStream" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 3 )
+
+[node name="Story" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Black" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Black"]
+
+[node name="Title" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 6.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Project Icarus"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 116.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Text"]
+wait_time = 0.025
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -29.0
+margin_bottom = 3.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Press Space to skip..."
+align = 1
+valign = 1
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+[connection signal="tween_all_completed" from="Black/Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="timeout" from="Text/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Icarus"
-run/main_scene="res://Instructions.tscn"
+run/main_scene="res://Story.tscn"
 config/icon="res://icon.png"
 
 [autoload]
