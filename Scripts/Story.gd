@@ -49,4 +49,4 @@ func _on_StartTimer_timeout():
 	NextScene()
 
 func NextScene():
-	SceneChanger.ChangeScene("res://Instructions.tscn")
+	SceneChanger.ChangeScene("res://Scenes/Instructions.tscn")

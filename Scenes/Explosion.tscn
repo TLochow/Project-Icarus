@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Explosion.gd" type="Script" id=1]
-[ext_resource path="res://AsteroidExplode.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/AsteroidExplode.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Explosion.gd" type="Script" id=2]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.585185, 1 )
@@ -29,12 +29,12 @@ lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 3 )
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+stream = ExtResource( 1 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

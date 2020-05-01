@@ -1,19 +1,19 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Story.gd" type="Script" id=1]
-[ext_resource path="res://Black.png" type="Texture" id=2]
-[ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=3]
-[ext_resource path="res://Blip.wav" type="AudioStream" id=4]
+[ext_resource path="res://Scripts/Story.gd" type="Script" id=1]
+[ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://Graphics/Black.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/Blip.wav" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
-font_data = ExtResource( 3 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 3 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
-font_data = ExtResource( 3 )
+font_data = ExtResource( 2 )
 
 [node name="Story" type="Control"]
 anchor_right = 1.0
@@ -26,7 +26,7 @@ __meta__ = {
 [node name="Black" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

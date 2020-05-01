@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var EXPLOSIONSCENE = preload("res://Explosion.tscn")
+var EXPLOSIONSCENE = preload("res://Scenes/Explosion.tscn")
 
 signal Destroyed
 

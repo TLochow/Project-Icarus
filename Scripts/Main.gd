@@ -1,6 +1,6 @@
 extends Node2D
 
-var ASTEROIDSCENE = preload("res://Asteroid.tscn")
+var ASTEROIDSCENE = preload("res://Scenes/Asteroid.tscn")
 
 var Asteroids
 var Points
@@ -22,7 +22,7 @@ func _input(event):
 		SceneChanger.EndGame()
 	elif GameOver:
 		if event.is_action_pressed("ui_accept"):
-			SceneChanger.ChangeScene("res://Main.tscn")
+			SceneChanger.ChangeScene("res://Scenes/Main.tscn")
 
 func _process(delta):
 	if not GameOver:
