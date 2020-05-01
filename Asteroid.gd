@@ -5,6 +5,7 @@ var EXPLOSIONSCENE = preload("res://Explosion.tscn")
 signal Destroyed
 
 func _ready():
+	$Sprite.frame = 12 + randi() % 5
 	angular_velocity = rand_range(-30.0, 30.0)
 
 func _physics_process(delta):

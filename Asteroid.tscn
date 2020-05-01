@@ -4,10 +4,10 @@
 [ext_resource path="res://Asteroid.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 11.855
+radius = 9.63166
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 15.08
+radius = 11.8699
 
 [node name="Asteroid" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -23,7 +23,7 @@ modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 9
-frame = 14
+frame = 12
 
 [node name="CollisionArea" type="Area2D" parent="."]
 
