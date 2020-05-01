@@ -31,6 +31,8 @@ func _process(delta):
 		var directionToBefore = PreviousShipPos - pos
 		$Player/Sprite.rotation_degrees = clamp(directionToBefore.x, -45.0, 45.0)
 		PreviousShipPos = pos
+		
+		$SpawnTimer.wait_time = max($SpawnTimer.wait_time - (delta * 0.005), 0.2)
 
 func _on_SpawnTimer_timeout():
 	var asteroid = ASTEROIDSCENE.instance()
@@ -58,3 +60,4 @@ func _on_Player_body_entered(body):
 		$Player/Explosion.emitting = true
 		$UI/End/Score.text = "Score: " + str(Points)
 		$UI/End.visible = true
+		$Explode.play()
