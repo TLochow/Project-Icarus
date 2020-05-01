@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Instructions.gd" type="Script" id=1]
+[ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="Instructions" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Instructions:
+
+Control your ship with your mouse.
+
+Don't get hit by Asteroids.
+
+Sling asteroids into each other to destroy them.
+
+You get more points the more Asteroids there are.
+
+
+Press Space to start..."
+align = 1
+valign = 1

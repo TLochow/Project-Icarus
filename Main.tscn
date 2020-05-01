@@ -1,10 +1,38 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://SpaceWarfareSheet.png" type="Texture" id=2]
+[ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.77366
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.644444, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1000.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle_random = 1.0
+scale = 5.0
+scale_random = 1.0
+color_ramp = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 80
+font_data = ExtResource( 3 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -23,6 +51,13 @@ texture = ExtResource( 2 )
 vframes = 4
 hframes = 9
 
+[node name="Explosion" type="Particles2D" parent="Player"]
+emitting = false
+amount = 10000
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 6 )
+
 [node name="Asteroids" type="Node2D" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -30,5 +65,72 @@ autostart = true
 
 [node name="PointsTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Asteroids" type="Label" parent="UI"]
+anchor_right = 10.0
+anchor_bottom = 10.0
+margin_left = 1.40808
+margin_top = 10.0
+margin_right = 31.4082
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Asteroids: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 17.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="End" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="UI/End"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Score: 0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="Label" parent="UI/End"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 147.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Press Space to restart"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="Player" to="." method="_on_Player_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="PointsTimer" to="." method="_on_PointsTimer_timeout"]

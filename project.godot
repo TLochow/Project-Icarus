@@ -16,12 +16,17 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Icarus"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Instructions.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 SceneChanger="*res://SceneChanger.tscn"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [rendering]
 

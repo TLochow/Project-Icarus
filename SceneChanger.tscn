@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://SceneChanger.gd" type="Script" id=1]
-[ext_resource path="res://Black.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -37,34 +36,6 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-
-uniform int colorblindmode = 0;
-
-vec4 sample_glow_pixel(sampler2D tex, vec2 uv) {
-    float hdr_threshold = 0.4; // How much glow?
-    return max(textureLod(tex, uv, 2.0) - hdr_threshold, vec4(0.0));
-}
-
-void fragment() {
-    vec2 ps = SCREEN_PIXEL_SIZE;
-    // Get blurred color from pixels considered glowing
-    vec4 col0 = sample_glow_pixel(SCREEN_TEXTURE, SCREEN_UV + vec2(-ps.x, 0));
-    vec4 col1 = sample_glow_pixel(SCREEN_TEXTURE, SCREEN_UV + vec2(ps.x, 0));
-    vec4 col2 = sample_glow_pixel(SCREEN_TEXTURE, SCREEN_UV + vec2(0, -ps.y));
-    vec4 col3 = sample_glow_pixel(SCREEN_TEXTURE, SCREEN_UV + vec2(0, ps.y));
-
-    vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);
-    vec4 glowing_col = 0.25 * (col0 + col1 + col2 + col3);
-	
-	COLOR =  vec4(col.rgb + glowing_col.rgb, col.a);
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/colorblindmode = 0
-
 [node name="SceneChanger" type="CanvasLayer"]
 pause_mode = 2
 layer = 128
@@ -82,16 +53,3 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/FadeIn = SubResource( 1 )
 anims/FadeOut = SubResource( 2 )
-
-[node name="Shader" type="TextureRect" parent="."]
-material = SubResource( 4 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 6.10352e-05
-margin_bottom = 6.10352e-05
-mouse_filter = 2
-texture = ExtResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
