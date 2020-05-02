@@ -15,7 +15,7 @@ var TimeOnScreenPoints = 0
 
 func _ready():
 	$Sprite.frame = 12 + randi() % 5
-	Rotation = rand_range(-0.5, 0.5)
+	Rotation = rand_range(-40.0, 40.0)
 
 func _physics_process(delta):
 	var player = get_tree().get_nodes_in_group("Player")
@@ -27,7 +27,7 @@ func _physics_process(delta):
 		var squareDistance = clamp(directionToPlayer.length_squared() * 0.000001, 0.1, 0.8)
 		var gravityDirection = directionToPlayer.normalized()
 		var gravityForce = gravityDirection * 2.0 / squareDistance
-		linear_velocity += gravityForce
+		linear_velocity += gravityForce * 50.0 * delta
 		
 		var distanceToPlayer = pos.distance_to(playerPos)
 		if distanceToPlayer < 50.0 and not IsCloseToPlayer:
@@ -55,7 +55,7 @@ func _physics_process(delta):
 			TimeOnScreen = 0.0
 			JugglingCashOut()
 		
-		$Sprite.rotate(Rotation)
+		$Sprite.rotate(Rotation * delta)
 
 func JugglingCashOut():
 	if TimeOnScreenPoints > 0:
