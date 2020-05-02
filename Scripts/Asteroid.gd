@@ -5,6 +5,8 @@ var Rotation
 signal Destroyed(pos)
 signal ExtraPoints(points, text, pos)
 
+var Destroyed = false
+
 var IsCloseToPlayer = false
 var CloseCallPoints = 0
 
@@ -62,9 +64,15 @@ func JugglingCashOut():
 
 func _on_CollisionArea_body_entered(body):
 	if body != self:
+		Destroy()
+		body.Destroy()
+
+func Destroy():
+	if not Destroyed:
+		Destroyed = true
 		JugglingCashOut()
 		emit_signal("Destroyed", get_position())
-		queue_free()
+		call_deferred("queue_free")
 
 func IsOnScreen(pos):
 	return pos.x > 0.0 and pos.x < 1024.0 and pos.y > 0.0 and pos.y < 600.0
