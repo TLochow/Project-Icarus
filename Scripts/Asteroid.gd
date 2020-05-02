@@ -1,10 +1,8 @@
 extends RigidBody2D
 
-var EXPLOSIONSCENE = preload("res://Scenes/Explosion.tscn")
-
 var Rotation
 
-signal Destroyed
+signal Destroyed(pos)
 signal ExtraPoints(points, text, pos)
 
 var IsCloseToPlayer = false
@@ -47,28 +45,15 @@ func _physics_process(delta):
 				var timePoints = int(TimeOnScreen) * 5
 				if timePoints != TimeOnScreenPoints:
 					TimeOnScreenPoints = timePoints
-					$JugglingPoints.visible = true
 					$JugglingPoints.text = "Juggling: " + str(TimeOnScreenPoints)
 				var labelSize = $JugglingPoints.get_size()
 				var labelPos = (gravityDirection * labelSize) - (labelSize * 0.5)
 				$JugglingPoints.set_position(labelPos)
 		else:
 			TimeOnScreen = 0.0
-			$JugglingPoints.visible = false
 			JugglingCashOut()
 		
 		$Sprite.rotate(Rotation)
-		update()
-
-func _draw():
-	if TimeOnScreen > 5.0:
-		var labelSize = $JugglingPoints.get_size()
-		var labelPos = $JugglingPoints.get_position()
-		draw_line(labelPos + Vector2(0.0, labelSize.y), labelPos + labelSize, Color(0, 0, 0, 1), 2.0)
-		if labelPos.x < 0.0:
-			draw_line(labelPos + labelSize, Vector2(0.0, 0.0), Color(0, 0, 0, 1), 2.0)
-		else:
-			draw_line(labelPos + Vector2(0.0, labelSize.y), Vector2(0.0, 0.0), Color(0, 0, 0, 1), 2.0)
 
 func JugglingCashOut():
 	if TimeOnScreenPoints > 0:
@@ -78,10 +63,7 @@ func JugglingCashOut():
 func _on_CollisionArea_body_entered(body):
 	if body != self:
 		JugglingCashOut()
-		var explosion = EXPLOSIONSCENE.instance()
-		explosion.set_position(get_position())
-		get_tree().get_root().add_child(explosion)
-		emit_signal("Destroyed")
+		emit_signal("Destroyed", get_position())
 		queue_free()
 
 func IsOnScreen(pos):

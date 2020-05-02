@@ -1,6 +1,7 @@
 extends Node2D
 
 var ASTEROIDSCENE = preload("res://Scenes/Asteroid.tscn")
+var EXPLOSIONSCENE = preload("res://Scenes/Explosion.tscn")
 var TEXTEFFECTSCENE = preload("res://Scenes/TextEffect.tscn")
 
 var Asteroids
@@ -46,7 +47,10 @@ func _on_SpawnTimer_timeout():
 	Asteroids += 1
 	$UI/Asteroids.text = "Asteroids: " + str(Asteroids)
 
-func AsteroidDestroyed():
+func AsteroidDestroyed(pos):
+	var explosion = EXPLOSIONSCENE.instance()
+	explosion.set_position(pos)
+	$Effects.add_child(explosion)
 	Asteroids -= 1
 	$UI/Asteroids.text = "Asteroids: " + str(Asteroids)
 
@@ -68,6 +72,8 @@ func _on_Player_body_entered(body):
 		$Player/Explosion.emitting = true
 		$UI/End/Score.text = "Score: " + str(Points)
 		$UI/End.visible = true
+		$UI/Asteroids.visible = false
+		$UI/Score.visible = false
 		$Explode.play()
 
 func ShowText(text, pos):
