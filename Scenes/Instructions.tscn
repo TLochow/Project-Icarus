@@ -24,7 +24,7 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="."]
 anchor_right = 1.0
-margin_bottom = 226.0
+margin_bottom = 159.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Instructions"
@@ -37,16 +37,24 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 153.0
+margin_top = 106.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Control your ship with your mouse.
+text = "Control your ship with your mouse / Your finger.
 
 Don't get hit by Asteroids.
 
+Asteroids gravitate towards you.
+The closer they are the stronger they are pulled towards you.
+
 Sling asteroids into each other to destroy them.
 
-You get more points the more Asteroids there are.
+Every second you earn one point for each asteroid
+that is currently in play.
+
+You get bonus points for:
+Close Calls - Barely avoiding fast asteroids.
+Juggling Asteroids - Keep them on screen as long as possible.
 
 
 
