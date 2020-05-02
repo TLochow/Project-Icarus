@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Asteroid.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/SpaceWarfareSheet.png" type="Texture" id=2]
+[ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.63166
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 11.8699
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+font_data = ExtResource( 3 )
 
 [node name="Asteroid" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -29,4 +34,20 @@ frame = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
 shape = SubResource( 2 )
+
+[node name="JugglingPoints" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_CollisionArea_body_entered"]
