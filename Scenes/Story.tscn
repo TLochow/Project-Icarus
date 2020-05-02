@@ -71,9 +71,12 @@ margin_top = -29.0
 margin_bottom = 3.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Press Space to skip..."
+text = "Click/Tap to skip..."
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 4.0

@@ -3,12 +3,11 @@
 [ext_resource path="res://Scripts/Instructions.gd" type="Script" id=1]
 [ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=2]
 
-
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -26,7 +25,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="."]
 anchor_right = 1.0
 margin_bottom = 226.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Instructions"
 align = 1
@@ -39,7 +38,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 153.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Control your ship with your mouse.
 
@@ -52,7 +51,7 @@ You get more points the more Asteroids there are.
 
 
 
-Press Space to start..."
+Click/Tap to start..."
 align = 1
 valign = 1
 __meta__ = {
