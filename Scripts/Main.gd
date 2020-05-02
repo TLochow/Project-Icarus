@@ -6,6 +6,7 @@ var TEXTEFFECTSCENE = preload("res://Scenes/TextEffect.tscn")
 
 var Asteroids
 var Points
+var Highscore
 
 var GameOver = false
 
@@ -70,7 +71,12 @@ func _on_Player_body_entered(body):
 		GameOver = true
 		$Player/Sprite.visible = false
 		$Player/Explosion.emitting = true
+		LoadHighScore()
+		if Points > Highscore:
+			Highscore = Points
+			SaveHighScore()
 		$UI/End/Score.text = "Score: " + str(Points)
+		$UI/End/HighScore.text = "Highscore: " + str(Highscore)
 		$UI/End.visible = true
 		$UI/Asteroids.visible = false
 		$UI/Score.visible = false
@@ -81,3 +87,16 @@ func ShowText(text, pos):
 	textEffect.set_position(pos)
 	textEffect.Text = text
 	$Effects.add_child(textEffect)
+
+func LoadHighScore():
+	Highscore = 0
+	var config = ConfigFile.new()
+	var result = config.load("user://settings.cfg")
+	if result == OK:
+		Highscore = config.get_value("defaults", "highscore", 0)
+
+func SaveHighScore():
+	var config = ConfigFile.new()
+	var result = config.load("user://settings.cfg")
+	config.set_value("defaults", "highscore", Highscore)
+	config.save("user://settings.cfg")

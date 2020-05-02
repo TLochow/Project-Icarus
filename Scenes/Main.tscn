@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/SpaceWarfareSheet.png" type="Texture" id=2]
@@ -33,6 +33,10 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 80
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 40
 font_data = ExtResource( 3 )
 
 [node name="Main" type="Node2D"]
@@ -122,10 +126,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HighScore" type="Label" parent="UI/End"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Highscore: 0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Restart" type="Label" parent="UI/End"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 147.0
+margin_top = 266.0
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Click/Tap to restart"
