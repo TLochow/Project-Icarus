@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/TextEffect.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/TextEffect.wav" type="AudioStream" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "TextAnimation"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0.313726 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0.313726 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0.313726 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0.313726 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0.313726 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[node name="TextEffect" type="Label"]
+margin_top = -10.0
+margin_right = 274.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+valign = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/TextAnimation = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -20.0
+autoplay = true
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

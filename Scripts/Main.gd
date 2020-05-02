@@ -1,6 +1,7 @@
 extends Node2D
 
 var ASTEROIDSCENE = preload("res://Scenes/Asteroid.tscn")
+var TEXTEFFECTSCENE = preload("res://Scenes/TextEffect.tscn")
 
 var Asteroids
 var Points
@@ -40,6 +41,7 @@ func _on_SpawnTimer_timeout():
 	var pos = Vector2(512.0, 300.0) + (Vector2(cos(angle), sin(angle)) * 1000.0)
 	asteroid.set_position(pos)
 	asteroid.connect("Destroyed", self, "AsteroidDestroyed")
+	asteroid.connect("ExtraPoints", self, "ExtraPoints")
 	$Asteroids.add_child(asteroid)
 	Asteroids += 1
 	$UI/Asteroids.text = "Asteroids: " + str(Asteroids)
@@ -47,6 +49,12 @@ func _on_SpawnTimer_timeout():
 func AsteroidDestroyed():
 	Asteroids -= 1
 	$UI/Asteroids.text = "Asteroids: " + str(Asteroids)
+
+func ExtraPoints(points, text, pos):
+	if not GameOver:
+		Points += points
+		$UI/Score.text = "Score: " + str(Points)
+		ShowText(text, pos)
 
 func _on_PointsTimer_timeout():
 	if not GameOver:
@@ -61,3 +69,9 @@ func _on_Player_body_entered(body):
 		$UI/End/Score.text = "Score: " + str(Points)
 		$UI/End.visible = true
 		$Explode.play()
+
+func ShowText(text, pos):
+	var textEffect = TEXTEFFECTSCENE.instance()
+	textEffect.set_position(pos)
+	textEffect.Text = text
+	$Effects.add_child(textEffect)

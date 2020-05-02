@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/TextEffect.wav-4422e6a7e9af6134d83c462d5efb8fef.sample"
+
+[deps]
+
+source_file="res://Sounds/TextEffect.wav"
+dest_files=[ "res://.import/TextEffect.wav-4422e6a7e9af6134d83c462d5efb8fef.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -37,4 +37,5 @@ autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+volume_db = -10.0
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

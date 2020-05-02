@@ -5,20 +5,17 @@
 [ext_resource path="res://ARCADE_N.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://Sounds/ShipExplode.wav" type="AudioStream" id=4]
 
-
-
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.77366
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.644444, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -29,12 +26,12 @@ orbit_velocity_random = 0.0
 angle_random = 1.0
 scale = 5.0
 scale_random = 1.0
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=6]
 size = 80
 font_data = ExtResource( 3 )
 
@@ -60,9 +57,11 @@ emitting = false
 amount = 10000
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 6 )
+process_material = SubResource( 4 )
 
 [node name="Asteroids" type="Node2D" parent="."]
+
+[node name="Effects" type="Node2D" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
@@ -79,7 +78,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 31.4082
 margin_bottom = 14.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Asteroids: 0"
 __meta__ = {
@@ -94,7 +93,7 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 17.0
 grow_horizontal = 0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Score: 0"
 __meta__ = {
@@ -114,7 +113,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Score: 0"
 align = 1
@@ -127,7 +126,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 147.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Press Space to restart"
 align = 1

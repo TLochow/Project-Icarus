@@ -3,8 +3,6 @@
 [ext_resource path="res://Scripts/SceneChanger.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/Background.ogg" type="AudioStream" id=2]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
 length = 0.25
@@ -59,4 +57,5 @@ anims/FadeOut = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = -10.0
 autoplay = true
