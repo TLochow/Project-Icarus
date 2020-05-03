@@ -71,8 +71,19 @@ func Destroy():
 	if not Destroyed:
 		Destroyed = true
 		JugglingCashOut()
+		ReparentTrail()
 		emit_signal("Destroyed", get_position())
 		call_deferred("queue_free")
+
+func ReparentTrail():
+	var effect = get_tree().get_nodes_in_group("EffectNode")
+	if effect.size() > 0:
+		var effectNode = effect[0]
+		var trail = $Trail
+		self.remove_child(trail)
+		effectNode.add_child(trail)
+		trail.set_owner(effectNode)
+		trail.Destroy()
 
 func IsOnScreen(pos):
 	return pos.x > 0.0 and pos.x < 1024.0 and pos.y > 0.0 and pos.y < 600.0

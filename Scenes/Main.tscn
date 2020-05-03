@@ -65,7 +65,9 @@ process_material = SubResource( 4 )
 
 [node name="Asteroids" type="Node2D" parent="."]
 
-[node name="Effects" type="Node2D" parent="."]
+[node name="Effects" type="Node2D" parent="." groups=[
+"EffectNode",
+]]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
