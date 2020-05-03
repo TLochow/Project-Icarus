@@ -27,7 +27,7 @@ func _physics_process(delta):
 		var squareDistance = clamp(directionToPlayer.length_squared() * 0.000001, 0.1, 0.8)
 		var gravityDirection = directionToPlayer.normalized()
 		var gravityForce = gravityDirection * 2.0 / squareDistance
-		linear_velocity += gravityForce * 50.0 * delta
+		linear_velocity += gravityForce * 60.0 * delta
 		
 		var distanceToPlayer = pos.distance_to(playerPos)
 		if distanceToPlayer < 50.0 and not IsCloseToPlayer:
